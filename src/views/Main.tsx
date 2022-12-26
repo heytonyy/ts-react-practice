@@ -6,7 +6,7 @@ import { styled } from '@mui/material/styles'
 import { ThemeProvider } from '@mui/material/styles'
 import { theme } from '../theme/theme'
 import { TodoProvider } from '../context/todoContext'
-import DisplayTodo from '../components/DisplayTodo'
+import TodoList from '../components/TodoList'
 
 const StyledContainer = styled(Container)(({ theme }) => ({
     background: theme.palette.divider,
@@ -25,7 +25,7 @@ const Main: React.FC = () => {
                 <StyledContainer>
                     <Header />
                     <InputTodo />
-                    <DisplayTodo />
+                    <TodoList />
                 </StyledContainer>
             </TodoProvider>
         </ThemeProvider>

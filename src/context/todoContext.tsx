@@ -1,15 +1,6 @@
-import React, { createContext, useReducer, Dispatch, useContext } from "react"
+import React, { createContext, useReducer, useContext } from "react"
 import { todoReducer, TodoActions } from "./todoReducer"
-
-type TodoType = {
-    id: string;
-    title: string;
-    completed: boolean;
-}
-
-type TodoStateType = {
-    todoList: TodoType[];
-}
+import { TodoType, TodoStateType, TodoProviderProps } from '../types/types'
 
 const initialState = {
     todoList: [],
@@ -23,11 +14,7 @@ const TodoContext = createContext<{
     dispatch: () => null,
 })
 
-type TodoProviderProps = {
-    children: React.ReactNode;
-}
-
-const mainReducer = ({todoList}: TodoStateType, action: TodoActions) => ({
+const mainReducer = ({ todoList }: TodoStateType, action: TodoActions) => ({
     todoList: todoReducer(todoList, action)
 })
 

@@ -1,9 +1,9 @@
-import { TodoType } from "./todoContext";
+import { TodoType } from "../types/types";
 
 enum Types {
     Add = 'ADD_TODO',
     Delete = 'DELETE_TODO',
-    Edit = 'EDIT_TODO',
+    Toggle = 'TOGGLE_TODO',
 }
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -26,7 +26,7 @@ type TodoPayload = {
     [Types.Delete]: {
         id: string;
     };
-    [Types.Edit]: {
+    [Types.Toggle]: {
         id: string;
     }
 }
@@ -48,7 +48,7 @@ const todoReducer = (state: TodoType[], action: TodoActions) => {
             return [
                 ...state.filter(todo => todo.id !== action.payload.id)
             ];
-        case Types.Edit:
+        case Types.Toggle:
             return [
                 ...state.map((todo) =>
                     todo.id === action.payload.id
