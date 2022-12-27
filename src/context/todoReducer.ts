@@ -4,6 +4,7 @@ enum Types {
     Add = 'ADD_TODO',
     Delete = 'DELETE_TODO',
     Toggle = 'TOGGLE_TODO',
+    Edit = 'EDIT_TODO',
 }
 
 type ActionMap<M extends { [index: string]: any }> = {
@@ -28,7 +29,11 @@ type TodoPayload = {
     };
     [Types.Toggle]: {
         id: string;
-    }
+    };
+    [Types.Edit]: {
+        id: string;
+        title: string;
+    };
 }
 
 type TodoActions = ActionMap<TodoPayload>[keyof ActionMap<TodoPayload>];
@@ -53,6 +58,13 @@ const todoReducer = (state: TodoType[], action: TodoActions) => {
                 ...state.map((todo) =>
                     todo.id === action.payload.id
                         ? { ...todo, completed: !todo.completed }
+                        : todo
+                )];
+        case Types.Edit:
+            return [
+                ...state.map((todo) =>
+                    todo.id === action.payload.id
+                        ? { ...todo, title: action.payload.title }
                         : todo
                 )];
         default:

@@ -70,7 +70,6 @@ const InputTodo: React.FC = () => {
                 onChange={(e) => setTodo(e.target.value)}
                 value={todo} />
             <AddButton onClick={handleAdd}>Add</AddButton>
-            <SuggestButton>Suggest</SuggestButton>
         </StyledBox>
     )
 }
